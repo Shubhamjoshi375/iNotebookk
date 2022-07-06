@@ -19,32 +19,30 @@ const Login = (props) => {
         console.log(json);
         if (json.success){
             // Save the auth token and redirect
-            localStorage.setItem('token', json.authtoken);
-            props.showAlert("Login Successfully","success");
+            localStorage.setItem('token', json.authtoken); 
             history.push("/");
 
         }
         else{
-            props.showAlert("Invaild details!", "danger");
+            alert("Invalid credentials");
         }
     }
 
     const onChange = (e)=>{
-        setCredentials({...credentials})
+        setCredentials({...credentials, [e.target.name]: e.target.value})
     }
 
     return (
-        <div className='mt-3'>
-            <h2>Login to continue to INotebook</h2>
+        <div>
             <form  onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control"  onChange={onChange} id="email" name="email" aria-describedby="emailHelp" />
+                    <input type="email" className="form-control" value={credentials.email} onChange={onChange} id="email" name="email" aria-describedby="emailHelp" />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control"  onChange={onChange} name="password" id="password" />
+                    <input type="password" className="form-control" value={credentials.password} onChange={onChange} name="password" id="password" />
                 </div>
 
                 <button type="submit" className="btn btn-primary">Submit</button>
@@ -54,7 +52,3 @@ const Login = (props) => {
 }
 
 export default Login
-
-
-// value={credentials.password}
-// value={credentials.email}
