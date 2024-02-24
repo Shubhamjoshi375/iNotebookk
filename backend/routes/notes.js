@@ -20,7 +20,7 @@ router.post('/addnote', fetchuser, [
     body('title', 'Enter a valid title').isLength({ min: 3 }),
     body('description', 'Description must be atleast 5 characters').isLength({ min: 5 }),], async (req, res) => {
         try {
-            const { title, description, tag } = req.body;
+            const { title, description, tag } = req.body;  //
 
             // If there are errors, return Bad request and the errors
             const errors = validationResult(req);
